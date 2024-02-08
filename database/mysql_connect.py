@@ -1,9 +1,9 @@
 from flask_mysqldb import MySQL
 
 def connectdb(app):
-    app.config['MYSQL_HOST'] = '10.0.255.243'
-    app.config['MYSQL_USER'] = 'devtihmfs'
-    app.config['MYSQL_PASSWORD'] = '@Developti'
+    app.config['MYSQL_HOST'] = '127.0.0.1'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = ''
     app.config['MYSQL_DB'] = 'bd_exusuario'
 
     db = MySQL(app)

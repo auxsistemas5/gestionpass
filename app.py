@@ -1,4 +1,6 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify,send_file
+import pandas as pd
+
 
 
 #import modules of project
@@ -19,7 +21,7 @@ db = connectdb(app)
 RestFullApi(app, db, jsonify)
 
 #import the routes of project
-routes(app, render_template)
+routes(app, render_template, db,pd,send_file)
 
 
 if __name__ == '__main__':
