@@ -1,0 +1,40 @@
+{% extends '/layout.html' %}
+{% block title %}
+    Casos
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-center justify-content-center">
+                    <h3 class="text-dark"><b>TODOS LOS CASOS</b></h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <table id="table_case" class="table  table-striped ">
+                            <thead>
+            
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <TH>ASIGNADO A</TH>
+                                    <th style="width: 150px;">FECHA REPORTE</th>
+                                    <th>FECHA OCURRENCIA</th>
+                                    <th>FUNCIONARIO REPORTANTE</th>
+                                    <th>CARGO FUNCIONARIO</th>
+                                    <th>SITIO DEL EVENTO</th>
+                                    <th>SITIO DEL REPORTE</th>
+                                    <th >OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

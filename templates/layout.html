@@ -31,6 +31,7 @@
   <!-- Template Main CSS File -->
   <link href="{{ url_for('static', filename='layout/css/style.css')}}" rel="stylesheet">
   <link href="{{ url_for('static', filename='layout/css/datatables.min.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='datatables/css/datatables.css')}}" rel="stylesheet">
 
 
   <!-- =======================================================
@@ -49,8 +50,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url_for('index' ) }}" class="logo d-flex align-items-center">
-        <img src="{{ url_for('static', filename='layout/img/logo.png' ) }} " alt="">
-        <span class="d-none d-lg-block">Devkit</span>
+        <img src="{{ url_for('static', filename='layout/img/LOGO.gif' ) }} " alt="" class="rounded-circle">
+        <span class="d-none d-lg-block">GESTIÓN PASS</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -285,7 +286,7 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="">
+                    <a href="/gestionpass/home/casos">
                     <i class="bi bi-circle"></i><span>Casos</span>
                     </a>
                 </li>
@@ -312,14 +313,14 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      <strong><span>DEPARTAMENTO DE TECNOLOGÍA</span></strong>
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Versión 1.1.1
     </div>
   </footer><!-- End Footer -->
 
@@ -340,6 +341,9 @@
   <script src="{{ url_for('static', filename='layout/js/jquery.js') }}"></script>
   <script src="{{ url_for('static', filename='layout/js/datatables.min.js') }}"></script>
   <script src="{{ url_for('static', filename='layout/js/moment.js') }}"></script>
+  <script src="{{ url_for('static', filename='datatables/js/datatables.js')}}" ></script>
+  <script src="{{ url_for('static', filename='datatables/js/tables.js')}}" ></script>
+  
 
 
 
