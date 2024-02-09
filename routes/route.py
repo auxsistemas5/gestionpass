@@ -1,9 +1,19 @@
-from routes.manageUsers.manage import login, register
+from routes.manageUsers.manage import autenticacionUsuario
 from routes.excelGenerate.generateExcel import generateExcel
+from routes.home.home import viewHome
 
-def routes(app,render_template, db,pd,send_file):
+def routes(app,render_template, db,pd,send_file,request,jsonify, redirect,url_for,session):
     
-    login(app,render_template)
-    register(app, render_template)
+    @app.route('/', methods=["GET"])
+    def index():
+        if "username" in session:
+            return redirect(url_for("home"))
+            
+        return redirect(url_for("login"))
+    
+   
+    viewHome(app,session,redirect,url_for,render_template)
+    
+    autenticacionUsuario(app,render_template,request,jsonify,db,redirect,url_for,session)
     
     generateExcel(app,db,pd,send_file)

@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="{{ url_for('static', filename='login/css/style.css' ) }}">
 
-    <title>Login #7</title>
+    <title>Registro</title>
   </head>
   <body>
   
@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="{{ url_for('static', filename='login/images/eadv.jpg' ) }}" alt="Image" class="img-fluid">
+          <img src="{{ url_for('static', filename='login/images/eadv.jpg' ) }}" id="imagenAdjust" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6 contents mt-2">
           <div class="row justify-content-center">
@@ -35,20 +35,20 @@
               <h3>GESTION PASS</h3>
               <p class="mb-4 text-dark">Plataforma dedicada a tratar los eventos adversos que acontecen en la institución</p>
             </div>
-            <form action="#" method="post">
+            <form action="/register" method="post">
               <div class="form-group first">
                 <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" autocomplete="off">
+                <input type="text" class="form-control" name="name" id="name" autocomplete="off">
 
               </div>
               <div class="form-group">
                 <label for="username">Usuario</label>
-                <input type="text" class="form-control" id="username" autocomplete="off">
+                <input type="text" class="form-control" name="username" id="username" autocomplete="off">
 
               </div>
               <div class="form-group last mb-4">
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control" id="password" autocomplete="off">
+                <input type="password" class="form-control" name="password" id="password" autocomplete="off">
                 
               </div>
               
