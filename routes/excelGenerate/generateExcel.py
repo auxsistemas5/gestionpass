@@ -54,7 +54,7 @@ def generateExcel(app,db,pd,send_file):
                         analisis.asegurador as ANALISIS_ASEGURADORA FROM  casos LEFT JOIN analisis ON analisis.id_caso= casos.id WHERE casos.fecha_reporte BETWEEN %s AND %s ORDER BY casos.id', (fechaInicio, fechaFin))
                     
                 elif tipo == "ocurrencia":
-                    query.execute('ELECT casos.id, casos.fecha_reporte as CASO_FECHA_REPORTE, \
+                    query.execute('SELECT casos.id, casos.fecha_reporte as CASO_FECHA_REPORTE, \
                                 casos.fecha_ocurrencia as CASO_FECHA_OCURRENCIA, \
                                 casos.funcionario_reporta as CASO_FUNCIONARIO_REPORTA ,\
                                 casos.cargo_funcionario as CASO_CARGO_FUNCIONARIO,\
