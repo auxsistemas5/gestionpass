@@ -36,5 +36,88 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalDetallesCaso" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header d-flex">
+                    <h3 class="modal-title "><b>DETALLES DEL CASO</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for=""><b>FECHA REPORTE:</b></label>
+                            <div id="fechaReporte"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><b>FECHA OCURRENCIA:</b></label>
+                            <div id="fechaOcurrencia"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for=""><b>FUNCIONARIO QUE NOTIFICA:</b></label>
+                            <div id="funcionario"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><b>CARGO DEL FUNCIONARIO:</b></label>
+                            <div id="cargo"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for=""><b>IDENTIFICACIÓN DEL PACIENTE:</b></label>
+                            <p id="docPaciente"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>NOMBRES DEL PACIENTE:</b></label>
+                            <p id="nomPaciente"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>APELLIDOS DEL PACIENTE:</b></label>
+                            <p id="apePaciente"></p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label for=""><b>DESCRIPCIÓN DEL SUCESO:</b></label>
+                            <div id="descripcionEvento"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for=""><b>SERVICIO DONDE OCURRIO EL EVENTO:</b></label>
+                            <p id="servicioEvento"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><b>SERVICIO DONDE SE REALIZA EL REPORTE:</b></label>
+                            <p id="servicioReporte"></p>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="">SERIE:</label>
+                            <p id="fechaReporte"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">MARCA:</label>
+                            <p id="fechaOcurrencia"></p>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">LOTE:</label>
+                            <p id="fechaOcurrencia"></p>
+                        </div>
+                    </div>
+                    
+                </div>  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+      </div><!-- End Extra Large Modal-->
     
 {% endblock %}
