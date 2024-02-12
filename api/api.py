@@ -26,17 +26,23 @@ def RestFullApi(app, db, jsonify):
                         casos.ape_paciente as APELLIDO_PACIENTE, \
                         casos.descripcion_evento as DESCRIPCION_EVENTO, \
                         casos.sitio_evento as SITIO_EVENTO,\
-                        casos.sd_reporte SITIO_REPORTE, \
+                        casos.sd_reporte LUGAR_REPORTE, \
                         casos.serie as SERIE, \
                         casos.marca as MARCA, \
                         casos.lote as LOTE, \
                         casos.asignado_a as CASO_ASIGNADO_A, \
+                        CASE WHEN casos.req_analisis = 1 THEN "CASO REQUIERE ANALISIS" \
+                        WHEN casos.req_analisis = 0 THEN "CASO NO REQUIERE ANALISIS" \
+                        END AS ESTADO_ANALISIS, \
+                        CASE WHEN casos.descartado = 1 THEN "CASO DESCARTADO" \
+                        WHEN casos.descartado = 0 THEN "CASO NO DESCARTADO" \
+                        END AS DESCARTADO, \
                         casos.peso_paciente as PESO_PACIENTE, \
                         casos.tipoEvento as TIPO_EVENTO, \
                         casos.edad as EDAD, \
                         casos.genero as GENERO, \
-                        casos.m_sospechoso , \
-                        casos.m_concomitante, \
+                        casos.m_sospechoso AS MEDICAMENTO_SOSPECHOSO, \
+                        casos.m_concomitante AS MEDICAMENTO_CONCOMINANTE, \
                         casos.v_administracion as VIA_ADMINISTRACION, \
                         casos.fecha_inicio as FECHA_INICIO, \
                         casos.dosis as DOSIS, \
@@ -58,7 +64,7 @@ def RestFullApi(app, db, jsonify):
         casos = query.fetchall()
         query.close()
         
-        casos_list = [{'id': data[0],'FECHA REPORTE':format_date(data[1]), 'FECHA OCURRENCIA': format_date(data[2]),'FUNCIONARIO REPORTA': data[3],'CARGO FUNCIONARIO': data[4],'DOCUMENTO PACIENTE': data[5],'NOMBRE PACIENTE': data[6],'APELLIDOS PACIENTE': data[7],'DESCRIPCION EVENTO': data[8],'SITIO EVENTO': data[9],'LUGAR REPORTE': data[10],'SERIE': data[11],'MARCA': data[12],'LOTE': data[13],'ASIGNADO A': data[14],'PESO PACIENTE': data[15],'TIPO EVENTO': data[16],'EDAD': data[17],'GENERO': data[18],'MEDICAMENTO SOSPECHOSO': data[19],'MEDICAMENTO CONCOMITANTE': data[20],'VIA ADMINISTRACION': data[21],'FECHA INICIO': data[22],'DOSIS': data[23],'FORMA ADMINISTRACION': data[23],'SUSPENDIDO': data[23],'DIAGNOSTICO': data[23],'INFORMACION': data[23],'EVALUACION DE HECHOS': data[23],'ACCIONES INSEGURAS': data[23],'FACTORES INHERENTES PACIENTE': data[23],'ANALISIS FACTORES CONTRIBUTIVOS': data[23],'OPORTUNIDADES DE MEJORA': data[23],'CONDICION': data[23],'CLASIFICACION': data[23],'SEVERIDAD': data[23],'BARRERA SEGUIRDAD': data[23],'TIPO EVENTO': data[23],'ASEGURADORA': data[23]} for data in casos]
+        casos_list = [{'id': data[0],'FECHA REPORTE':format_date(data[1]), 'FECHA OCURRENCIA': format_date(data[2]),'FUNCIONARIO REPORTA': data[3],'CARGO FUNCIONARIO': data[4],'DOCUMENTO PACIENTE': data[5],'NOMBRE PACIENTE': data[6],'APELLIDOS PACIENTE': data[7],'DESCRIPCION EVENTO': data[8],'SITIO EVENTO': data[9],'LUGAR REPORTE': data[10],'SERIE': data[11],'MARCA': data[12],'LOTE': data[13],'ASIGNADO A': data[14],'ANALISIS': data[15],'DESCARTADO': data[16],'PESO PACIENTE': data[17],'TIPO EVENTO': data[18],'EDAD': data[19],'GENERO': data[20],'MEDICAMENTO SOSPECHOSO': data[21],'MEDICAMENTO CONCOMITANTE': data[22],'VIA ADMINISTRACION': data[23],'FECHA INICIO': data[24],'DOSIS': data[25],'FORMA ADMINISTRACION': data[26],'SUSPENDIDO': data[27],'DIAGNOSTICO': data[28],'INFORMACION': data[29],'EVALUACION DE HECHOS': data[30],'ACCIONES INSEGURAS': data[31],'FACTORES INHERENTES PACIENTE': data[32],'ANALISIS FACTORES CONTRIBUTIVOS': data[33],'OPORTUNIDADES DE MEJORA': data[34],'CONDICION': data[35],'CLASIFICACION': data[36],'SEVERIDAD': data[37],'BARRERA SEGUIRDAD': data[38],'TIPO EVENTO': data[39],'ASEGURADORA': data[40]} for data in casos]
 
         return jsonify(casos_list)
     
