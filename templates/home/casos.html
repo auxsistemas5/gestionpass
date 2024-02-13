@@ -39,9 +39,9 @@
     <div class="modal fade" id="modalDetallesCaso" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header d-flex">
-                    <h3 class="modal-title "><b>DETALLES DEL CASO</b></h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>DETALLES DEL CASO</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mt-2">
@@ -88,32 +88,58 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label for=""><b>SERVICIO DONDE OCURRIO EL EVENTO:</b></label>
-                            <p id="servicioEvento"></p>
+                            <div id="servicioEvento"></div>
                         </div>
                         <div class="col-md-6">
                             <label for=""><b>SERVICIO DONDE SE REALIZA EL REPORTE:</b></label>
-                            <p id="servicioReporte"></p>
+                            <div id="servicioReporte"></div>
                         </div>
                         
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-4">
-                            <label for="">SERIE:</label>
-                            <p id="fechaReporte"></p>
+                            <label for=""><b>SERIE:</b></label>
+                            <div id="serie"></div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">MARCA:</label>
-                            <p id="fechaOcurrencia"></p>
+                            <label for=""><b>MARCA:</b></label>
+                            <div id="marca"></div>
                         </div>
                         <div class="col-md-4">
-                            <label for="">LOTE:</label>
-                            <p id="fechaOcurrencia"></p>
+                            <label for=""><b>LOTE:</b></label>
+                            <div id="lote"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label for=""><b>EVIDENCIA DEL CASO:</b></label>
+                            <div id="evidenciaCaso"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label for=""><b>TIPO DE EVENTO:</b></label>
+                            <div id="tipoEvento"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for=""><b>PESO PACIENTE:</b></label>
+                            <div id="pesoPaciente"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>EDAD PACIENTE:</b></label>
+                            <div id="edadPaciente"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>GENERO:</b></label>
+                            <div id="generoPaciente"></div>
                         </div>
                     </div>
                     
                 </div>  
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
                     
                 </div>
             </div>

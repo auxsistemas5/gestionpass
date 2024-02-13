@@ -71,7 +71,7 @@ def RestFullApi(app, db, jsonify):
     @app.route('/api/v1/gestionpass/getCaseById/<id>', methods=["GET"])
     def getCaseById(id):
         query = db.connection.cursor()
-        query.execute('SELECT id, asignado_a,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario, sitio_evento,sd_reporte FROM casos where id = %s', (id,))
+        query.execute('SELECT id, asignado_a,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario, sitio_evento,sd_reporte,serie,marca,lote,file FROM casos where id = %s', (id,))
         casos = query.fetchall()
         query.close()
         
@@ -82,11 +82,11 @@ def RestFullApi(app, db, jsonify):
     @app.route('/api/v1/gestionpass/getAllCaseById/<id>', methods=["GET"])
     def getAllCaseById(id):
         query = db.connection.cursor()
-        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote FROM casos where id = %s', (id,))
+        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote,file,tipoEvento,peso_paciente,edad,genero FROM casos where id = %s', (id,))
         casos = query.fetchone()
         query.close()
         
-        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13]]
+        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13],casos[14],casos[15],casos[16],casos[17],casos[18]]
 
         return jsonify(casos_list)
     
