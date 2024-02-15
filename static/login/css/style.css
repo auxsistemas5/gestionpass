@@ -25,8 +25,13 @@ a {
 }
 @media (max-width: 998px){
     .content {
-        padding: 7rem 0; 
+        padding: 1rem 0; 
     }
+}
+@media (min-width: 998px ) and (max-width: 1300px){
+  .content {
+      padding: 6rem 0; 
+  }
 }
 
 h2 {

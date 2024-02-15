@@ -11,7 +11,7 @@ def autenticacionUsuario(app,render_template,request,jsonify,db,redirect,url_for
             contraseña = request.form['password']
 
             query = db.connection.cursor()
-            query.execute("SELECT id, name,username, password FROM users WHERE username = %s", (usuario,))
+            query.execute("SELECT id, name,username, password,role,area FROM users WHERE username = %s", (usuario,))
             user = query.fetchone()
             query.close()
 
@@ -22,6 +22,8 @@ def autenticacionUsuario(app,render_template,request,jsonify,db,redirect,url_for
                     session["id"] = user[0]
                     session["name"] = user[1]
                     session["username"] = user[2]
+                    session["role"] = user[4]
+                    session["area"] = user[5]
                     return redirect(url_for('home'))
                 
                 
@@ -57,3 +59,8 @@ def autenticacionUsuario(app,render_template,request,jsonify,db,redirect,url_for
         session.pop("username", None)
         
         return redirect(url_for('login'))
+    
+    
+    @app.route('/gestionpass/home/users', methods=["GET", "POST"])
+    def users():
+        return render_template('users/index.html') 

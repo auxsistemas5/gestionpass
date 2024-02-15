@@ -1,0 +1,49 @@
+{% extends '/layout.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-dark"><b>ENVIAR CORREO</b></h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for=""><b>QUIEN RECIBE</b></label>
+                            <input type="text" class="form-control" id="remitenteEmail">
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><b>ASUNTO</b></label>
+                            <input type="text" class="form-control" id="asuntoEmail">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label for=""><b>DOCUMENTO ADJUNTO</b></label>
+                            <input type="file" id="adjunto" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label for=""><b>MENSAJE</b></label>
+                            <textarea name="" class="form-control" id="mensajeEmail" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <button id="sendEmail" class="form-control btn btn-info">ENVIAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+{% endblock %}

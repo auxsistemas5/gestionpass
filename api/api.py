@@ -1,3 +1,6 @@
+import calendar
+import datetime
+
 def RestFullApi(app, db, jsonify):
     def format_date(date):
         # Formatear la fecha en el formato deseado
@@ -82,12 +85,112 @@ def RestFullApi(app, db, jsonify):
     @app.route('/api/v1/gestionpass/getAllCaseById/<id>', methods=["GET"])
     def getAllCaseById(id):
         query = db.connection.cursor()
-        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote,file,tipoEvento,peso_paciente,edad,genero FROM casos where id = %s', (id,))
+        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote,file,tipoEvento,peso_paciente,edad,genero,m_sospechoso,m_concomitante,v_administracion,fecha_inicio,dosis,f_administracion,suspendido,diagnostico,informacion FROM casos where id = %s', (id,))
         casos = query.fetchone()
         query.close()
         
-        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13],casos[14],casos[15],casos[16],casos[17],casos[18]]
+        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13],casos[14],casos[15],casos[16],casos[17],casos[18],casos[19],casos[20],casos[21],casos[22],casos[23],casos[24],casos[25],casos[26],casos[27]]
 
         return jsonify(casos_list)
     
+    @app.route('/api/v1/gestionpass/getAllCasesforStadistics', methods=["GET"])
+    def getAllCasesforStadistics():
+        query = db.connection.cursor()
+        query.execute(" SELECT  SUM(CASE WHEN asignado_a = 'FARMACOVIGILANCIA' THEN 1 ELSE 0 END) AS FARMACOVIGILANCIA , \
+        SUM(CASE WHEN asignado_a = 'FARMACOVIGILANCIA NIQUIA' THEN 1 ELSE 0 END) AS FARMACOVIGILANCIA_NIQUIA, \
+        SUM(CASE WHEN asignado_a = 'EPIDEMIOLOGÍA' THEN 1 ELSE 0 END) AS EPIDEMIOLOGÍA, \
+        SUM(CASE WHEN asignado_a = 'SEGURIDAD DEL PACIENTE' THEN 1 ELSE 0 END) AS SEGURIDAD, \
+        SUM(CASE WHEN asignado_a = 'BIOMEDICOS' THEN 1 ELSE 0 END) AS BIOMEDICOS, \
+        SUM(CASE WHEN asignado_a = '' THEN 1 ELSE 0 END) AS SIN_ASIGNAR \
+        FROM casos")
+        casos = query.fetchall()
+        query.close()
+        casos_list = [{'FARMACOAT': data[0], 'FARMACONQ': data[1],'EPIDEMIOLOGÍA': data[2],'SEGURIDAD': data[3],'BIOMEDICOS': data[4],'SIN ASIGNAR': data[5]} for data in casos]
+        
+        return jsonify(casos_list)
     
+    @app.route('/api/v1/gestionpass/getAllCasesforMonthActually', methods=["GET"])
+    def getAllCasesforMonthActually():
+
+        # Obtener el año y el mes actual
+        anio_actual = datetime.datetime.now().year
+        mes_actual = datetime.datetime.now().month
+
+        # Obtener la fecha de inicio del mes actual
+        fecha_inicio_mes_actual = datetime.datetime(anio_actual, mes_actual, 1)
+
+        # Obtener el último día del mes actual
+        _, ultimo_dia_mes_actual = calendar.monthrange(anio_actual, mes_actual)
+        fecha_final_mes_actual = datetime.datetime(anio_actual, mes_actual, ultimo_dia_mes_actual)
+
+        # Formatear las fechas en formato ymd
+        fecha_inicio = fecha_inicio_mes_actual.strftime("%Y-%m-%d")
+        fecha_final = fecha_final_mes_actual.strftime("%Y-%m-%d")
+        
+        query = db.connection.cursor()
+        query.execute(" SELECT  SUM(CASE WHEN asignado_a = 'FARMACOVIGILANCIA' THEN 1 ELSE 0 END) AS FARMACOVIGILANCIA , \
+        SUM(CASE WHEN asignado_a = 'FARMACOVIGILANCIA NIQUIA' THEN 1 ELSE 0 END) AS FARMACOVIGILANCIA_NIQUIA, \
+        SUM(CASE WHEN asignado_a = 'EPIDEMIOLOGÍA' THEN 1 ELSE 0 END) AS EPIDEMIOLOGÍA, \
+        SUM(CASE WHEN asignado_a = 'SEGURIDAD DEL PACIENTE' THEN 1 ELSE 0 END) AS SEGURIDAD, \
+        SUM(CASE WHEN asignado_a = 'BIOMEDICOS' THEN 1 ELSE 0 END) AS BIOMEDICOS, \
+        SUM(CASE WHEN asignado_a = '' THEN 1 ELSE 0 END) AS SIN_ASIGNAR \
+        FROM casos where fecha_reporte BETWEEN %s AND %s",(fecha_inicio,fecha_final))
+
+        casos = query.fetchall()
+        query.close()
+        
+        casos_list = [{'FARMACOAT': data[0], 'FARMACONQ': data[1],'EPIDEMIOLOGÍA': data[2],'SEGURIDAD': data[3],'BIOMEDICOS': data[4],'SIN ASIGNAR': data[5]} for data in casos]
+        
+        return jsonify(casos_list)
+    
+    @app.route('/api/v1/gestionpass/getAllCasesforYearAndArea/<year>/<area>', methods=["GET"])
+    def getAllCasesforYearAndArea(year,area):
+    
+        query = db.connection.cursor()
+        query.execute("SELECT  SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS ENERO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS FEBRERO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS MARZO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS ABRIL, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS MAYO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS JUNIO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS JULIO,\
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS AGOSTO, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS SEPTIEMBRE, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS OCTUBRE, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS NOVIEMBRE, \
+               SUM(CASE WHEN asignado_a = %s AND fecha_reporte BETWEEN %s AND %s THEN 1 ELSE 0 END) AS DICIEMBRE \
+               FROM casos ",
+               (area, year + '-01-01', year + '-01-31',
+                area, year + '-02-01', year + '-02-29',  # Febrero tiene 28 días
+                area, year + '-03-01', year + '-03-31',
+                area, year + '-04-01', year + '-04-30',  # Abril tiene 30 días
+                area, year + '-05-01', year + '-05-31',
+                area, year + '-06-01', year + '-06-30',  # Junio tiene 30 días
+                area, year + '-07-01', year + '-07-31',  # Junio tiene 30 días
+                area, year + '-08-01', year + '-08-31',  # Junio tiene 30 días
+                area, year + '-09-01', year + '-09-30',  # Junio tiene 30 días
+                area, year + '-10-01', year + '-10-31',  # Junio tiene 30 días
+                area, year + '-11-01', year + '-11-30',  # Junio tiene 30 días
+                area, year + '-12-01', year + '-12-31',  # Junio tiene 30 días
+                
+                ))
+        
+        casos = query.fetchall()
+        query.close()
+        
+        casos_list = [{'ENERO': data[0], 'FEBRERO': data[1],'MARZO': data[2],'ABRIL': data[3],'MAYO': data[4],'JUNIO': data[5],'JULIO': data[6],'AGOSTO': data[7],'SEPTIEMBRE': data[8],'OCTUBRE': data[9],'NOVIEMBRE': data[10],'DICIEMBRE': data[11]} for data in casos]
+        
+        return jsonify(casos_list)
+    
+    @app.route('/api/v1/gestionpass/getAllCasesByArea/<area>', methods=["GET"])
+    def getAllCasesByArea(area):
+        query = db.connection.cursor()
+        query.execute('SELECT id, fecha_reporte,fecha_ocurrencia,sitio_evento,sd_reporte FROM casos where asignado_a = %s order by id ASC',(area,))
+        casos = query.fetchall()
+        query.close()
+        
+        casos_list = [{'id': data[0],'reporte':format_date(data[1]), 'ocurrencia': format_date(data[2]),'sitioEvento': data[3],'sitioReporte': data[4]} for data in casos]
+
+        return jsonify(casos_list)
+        
+   

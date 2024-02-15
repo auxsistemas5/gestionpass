@@ -1,0 +1,199 @@
+{% extends '/layout.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #233A5F;">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-white"><b>MIS CASOS</b></h3>
+                    </div>
+                </div>
+                <div class="card-body mt-3">
+                    <div hidden><input type="text" id="userType" value="{{session['area']}}"></div>
+                    <table class="table" id="casos_area">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>FECHA REPORTE</th>
+                                <th>FECHA OCURRENCIA</th>
+                                <th>SITIO REPORTE</th>
+                                <th>SITIO EVENTO</th>
+                                <th>OPCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalDetallesCaso" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>DETALLES DEL CASO</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="d-flex justify-content-center" >
+                        <div class="spinner-border" role="status" id="loaderSpiner">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="datosUsuarioSeleccionado">
+
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>FECHA REPORTE:</b></label>
+                                <div id="fechaReporte"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for=""><b>FECHA OCURRENCIA:</b></label>
+                                <div id="fechaOcurrencia"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>FUNCIONARIO QUE NOTIFICA:</b></label>
+                                <div id="funcionario"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for=""><b>CARGO DEL FUNCIONARIO:</b></label>
+                                <div id="cargo"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>IDENTIFICACIÓN DEL PACIENTE:</b></label>
+                                <p id="docPaciente"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>NOMBRES DEL PACIENTE:</b></label>
+                                <p id="nomPaciente"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>APELLIDOS DEL PACIENTE:</b></label>
+                                <p id="apePaciente"></p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>DESCRIPCIÓN DEL SUCESO:</b></label>
+                                <div id="descripcionEvento"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>SERVICIO DONDE OCURRIO EL EVENTO:</b></label>
+                                <div id="servicioEvento"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for=""><b>SERVICIO DONDE SE REALIZA EL REPORTE:</b></label>
+                                <div id="servicioReporte"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>SERIE:</b></label>
+                                <div id="serie"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>MARCA:</b></label>
+                                <div id="marca"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>LOTE:</b></label>
+                                <div id="lote"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>EVIDENCIA DEL CASO:</b></label>
+                                <div id="evidenciaCaso"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>TIPO DE EVENTO:</b></label>
+                                <div id="tipoEvento"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>PESO PACIENTE:</b></label>
+                                <div id="pesoPaciente"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>EDAD PACIENTE:</b></label>
+                                <div id="edadPaciente"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>GENERO:</b></label>
+                                <div id="generoPaciente"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>MEDICAMENTO SOSPECHOSO</b></label>
+                                <div id="meSospechoso"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>MEDICAMENTO CONCOMINANTE</b></label>
+                                <div id="meConcominante"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>VIA DE ADMINISTRACIÓN:</b></label>
+                                <div id="viaAdministracion"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>FECHA INICIO</b></label>
+                                <div id="fechaInicio"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>DOSIS</b></label>
+                                <div id="dosis"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>FRECUENCIA DE ADMINISTRACIÓN:</b></label>
+                                <div id="fecAdministracion"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>MOMENTO EN QUE SE SUSPENDIO:</b></label>
+                                <div id="suspendido"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for=""><b>DIAGNOSTICO Y ENFERMEDADES CONCOMITANTES:</b></label>
+                                <div id="diagnostico"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>INFORMACIÓN SOBRE EVOLUCIÓN(INICIO EVOLUCIÓN Y DESENLACE):</b></label>
+                                <div id="informacion"></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>  
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div><!-- End Extra Large Modal-->
+{% endblock %}

@@ -4,6 +4,78 @@
 {% endblock %}
 {% block content %}
     
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #233A5F;">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-white"><b>VISUALIZACIÓN DE CASOS</b></h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-center">
+                                <h4><b>CASOS TOTALES POR AREA</b></h4>
+                            </div>
+                            <canvas id="pieChart" style="max-height: 400px;"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-center">
+                                <h4><b>CASOS MES ACTUAL</b></h4>
+                            </div>
+                            <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #233A5F;">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-white"><b>FILTRO DE CASOS AÑO Y AREA</b></h3>
+                    </div>
+                </div>
+                <div class="card-body mt-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for=""><b>Seleccione el año</b></label>
+                            <select name="" id="selectFilterYear" class="form-select">
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Seleccione el Area</label>
+                            <select name="" id="selectFilterArea" class="form-select">
+                                <option value="BIOMEDICOS">BIOMEDICOS</option>
+                                <option value="EPIDEMIOLOGÍA">EPIDEMIOLOGÍA</option>
+                                <option value="FARMACOVIGILANCIA">FARMACOVIGILANCIA</option>
+                                <option value="FARMACOVIGILANCIA NIQUIA">FARMACOVIGILANCIA NIQUIA</option>
+                                <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for=""></label>
+                            <button type="button" class="btn btn-success form-control" id="viewCharFilter">MOSTRAR</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="casesFilterAreaStadistics">
+                            
+                            <canvas id="barChart" style="max-height: 400px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

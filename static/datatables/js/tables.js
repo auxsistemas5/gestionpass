@@ -1,11 +1,18 @@
 $(document).ready(()=>{
     $('#table_case').on('click','#caso-detalles', function(){
         var id = $(this).data('id');
+        $('#loaderSpiner').show();
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
             url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
+                $('#datosUsuarioSeleccionado').hide();
+                setTimeout(()=>{
+                    
+                    $('#loaderSpiner').hide();
+                    $('#datosUsuarioSeleccionado').show();
+                },2000)
                 $('#fechaReporte').html(response[1]);
                 $('#fechaOcurrencia').html(response[2]);
                 $('#funcionario').html(response[3]);
@@ -31,9 +38,16 @@ $(document).ready(()=>{
                 response[17] != ""? $('#edadPaciente').html(response[17]): $('#edadPaciente').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
                 response[18] != ""? $('#generoPaciente').html(response[18]): $('#generoPaciente').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
 
-                
+                response[19] != ""? $('#meSospechoso').html(response[19]): $('#meSospechoso').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[20] != ""? $('#meConcominante').html(response[20]): $('#meConcominante').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[21] != ""? $('#viaAdministracion').html(response[21]): $('#viaAdministracion').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
 
-                
+                response[22] != ""? $('#fechaInicio').html(response[22]): $('#fechaInicio').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[23] != ""? $('#dosis').html(response[23]): $('#dosis').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[24] != ""? $('#fecAdministracion').html(response[24]): $('#fecAdministracion').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[25] != ""? $('#suspendido').html(response[25]): $('#suspendido').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[26] != ""? $('#diagnostico').html(response[26]): $('#diagnostico').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
+                response[27] != ""? $('#informacion').html(response[27]): $('#informacion').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
             }
         });
         
@@ -42,6 +56,9 @@ $(document).ready(()=>{
         var id = $(this).data('id');
         console.log(id);
     });
+    if ($.fn.DataTable.isDataTable('#table_case')) {
+        $('#table_case').DataTable().destroy();
+    }
     $('#table_case').DataTable({
         ajax: {
             url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllCases',
@@ -65,7 +82,13 @@ $(document).ready(()=>{
                 }
             }
             
-        ]
+        ],
+        createdRow: function(row, data,dataIndex){
+            if(!data.asignado){
+                $(row).find('td:eq(1)').css('background-color', 'orange');
+                data.asignado = 'SIN ASIGNAR';
+            }
+        }
     });
 });
 
