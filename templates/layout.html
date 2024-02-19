@@ -32,6 +32,7 @@
   <link href="{{ url_for('static', filename='layout/css/style.css')}}" rel="stylesheet">
   <link href="{{ url_for('static', filename='layout/css/datatables.min.css')}}" rel="stylesheet">
   <link href="{{ url_for('static', filename='datatables/css/datatables.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='select2/css/select2.css')}}" rel="stylesheet">
 
 
   <!-- =======================================================
@@ -357,6 +358,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='layout/js/jquery.js') }}"></script>
   <script src="{{ url_for('static', filename='layout/vendor/apexcharts/apexcharts.min.js' ) }}"></script>
   <script src="{{ url_for('static', filename='layout/vendor/bootstrap/js/bootstrap.bundle.min.js' ) }}"></script>
   <script src="{{ url_for('static', filename='layout/vendor/chart.js/chart.umd.js' ) }} "></script>
@@ -368,7 +370,6 @@
 
   <!-- Template Main JS File -->
   <script src="{{ url_for('static', filename='layout/js/main.js' ) }}"></script>
-  <script src="{{ url_for('static', filename='layout/js/jquery.js') }}"></script>
   <script src="{{ url_for('static', filename='layout/js/datatables.min.js') }}"></script>
   <script src="{{ url_for('static', filename='layout/js/moment.js') }}"></script>
   <script src="{{ url_for('static', filename='datatables/js/datatables.js')}}" ></script>
@@ -376,6 +377,9 @@
   <script src="{{ url_for('static', filename='datatables/js/tables.js')}}" ></script>
   <script src="{{ url_for('static', filename='dashboard/js/estadisticas.js')}}" ></script>
   <script src="{{ url_for('static', filename='home/js/miscasos.js')}}" ></script>
+  
+  <script src="{{ url_for('static', filename='usuarios/js/tablaUsuarios.js')}}" ></script>
+  <script src="{{ url_for('static', filename='email/sendEmail.js')}}" ></script>
   
 
 

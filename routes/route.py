@@ -7,10 +7,7 @@ def routes(app,render_template, db,pd,send_file,request,jsonify, redirect,url_fo
     
     @app.route('/', methods=["GET"])
     def index():
-        if "username" in session:
-            return redirect(url_for("home"))
-            
-        return redirect(url_for("login"))
+        return render_template('index.html')
     
    
     viewHome(app,session,redirect,url_for,render_template)

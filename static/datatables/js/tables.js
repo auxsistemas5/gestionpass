@@ -29,7 +29,10 @@ $(document).ready(()=>{
                 if(response[14] == ""){
                     $('#evidenciaCaso').html('<h4><span class="badge bg-info">SIN EVIDENCIA QUE MOSTRAR</span></h4>');
                 }else{
-                    $('#evidenciaCaso').html(`<img src="${response[14]}">`);
+
+                    var nuevaCadena = response[14].substring(3);
+                    var imagenSerialize = 'static/'+nuevaCadena
+                    $('#evidenciaCaso').html(`<img src="${imagenSerialize}">`);
                 }
         
                 response[15] != ""? $('#tipoEvento').html(response[15]): $('#tipoEvento').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
@@ -48,6 +51,9 @@ $(document).ready(()=>{
                 response[25] != ""? $('#suspendido').html(response[25]): $('#suspendido').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
                 response[26] != ""? $('#diagnostico').html(response[26]): $('#diagnostico').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
                 response[27] != ""? $('#informacion').html(response[27]): $('#informacion').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
+                response[28] != ""? $('#asignado').html(response[28]): $('#asignado').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
+                response[29] == 1? $('#descartado').html('<p>SI</p>'): $('#descartado').html('<p>NO</p>');   
+                response[30] == 1? $('#analisis').html('<p>SI</p>'): $('#analisis').html('<p>NO</p>');   
             }
         });
         
@@ -78,7 +84,7 @@ $(document).ready(()=>{
                 targets: -1,
                 render: function(data, type, row, meta) {
                     // Aquí puedes devolver el HTML para el botón
-                    return `<button data-id=${row.id} id="caso-editar" class="btn btn-info btn-sm form-control">EDITAR</button> <button id="caso-detalles" data-id=${row.id} class="btn btn-success btn-sm form-control">VER</button>`;
+                    return `<button data-id=${row.id} id="caso-editar" class="btn btn-info btn-sm "><i class="bi bi-pencil-fill"></i></button> <button id="caso-detalles" data-id=${row.id} class="btn btn-success btn-sm "><i class="bi bi-eye-fill"></i></button>`;
                 }
             }
             

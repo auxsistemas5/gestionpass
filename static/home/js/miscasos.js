@@ -20,7 +20,7 @@ $(document).ready(function () {
                 targets: -1,
                 render: function(data, type, row, meta) {
                     // Aquí puedes devolver el HTML para el botón
-                    return `<button data-id=${row.id} id="miCasoVer" class="btn btn-info btn-sm form-control">VER</button>`;
+                    return `<button data-id=${row.id} id="miCasoVer" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></button>`;
                 }
             }
             
@@ -33,7 +33,7 @@ $(document).ready(function () {
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
-            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 $('#datosUsuarioSeleccionado').hide();
                 setTimeout(()=>{
@@ -76,6 +76,10 @@ $(document).ready(function () {
                 response[25] != ""? $('#suspendido').html(response[25]): $('#suspendido').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
                 response[26] != ""? $('#diagnostico').html(response[26]): $('#diagnostico').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');
                 response[27] != ""? $('#informacion').html(response[27]): $('#informacion').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
+                response[28] != ""? $('#asignado').html(response[28]): $('#asignado').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
+                response[29] == 1? $('#descartado').html('<p>SI</p>'): $('#descartado').html('<p>NO</p>');   
+                response[30] == 1? $('#analisis').html('<p>SI</p>'): $('#analisis').html('<p>NO</p>');   
+                
             }
         });
         

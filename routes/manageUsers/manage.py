@@ -27,7 +27,7 @@ def autenticacionUsuario(app,render_template,request,jsonify,db,redirect,url_for
                     return redirect(url_for('home'))
                 
                 
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
             
         return render_template('login/index.html')
         

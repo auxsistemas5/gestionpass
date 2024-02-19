@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIO</title>
+    <style>
+        #fullscreen-image {
+            width: 100%;
+            height: 100vh; /* La imagen ocupará el 100% de la altura de la pantalla */
+            object-fit: cover; /* La imagen se ajustará para cubrir todo el espacio disponible sin deformarse */
+        }
+    </style>
+</head>
+<body>
+    <img id="fullscreen-image " src="{{ url_for('static', filename='images/gestionpass.gif' ) }}" alt=""/>
+</body>
+</html>
+<script>
+    window.onload = function() {
+        var image = document.getElementById('fullscreen-image');
+        image.style.height = window.innerHeight + 'px';
+    }
+    
+        // Simula el tiempo de carga
+    setTimeout(function() {
+        // Oculta la página de carga después de la carga
+        
+        //window.location.href = '/login';
+    }, 2800); // Cambia este valor al tiempo que dura la animación de carga
+    
+</script>

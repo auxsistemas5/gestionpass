@@ -3,5 +3,186 @@
     Usuarios
 {% endblock %}
 {% block content %}
-    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #233A5F;">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-white"><b>MANEJO DE USUARIOS</b></h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <button class="btn btn-sm btn-info" id="crearNuevoUsuario">CREAR USUARIO NUEVO</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive mt-3">
+                        <table class="table " id="tabla-usuarios">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NOMBRE</th>
+                                    <th>USUARIO</th>
+                                    <th>ROL</th>
+                                    <th>AREA</th>
+                                    <th>ESTADO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCrearUsuario" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>CREAR NUEVO USUARIO</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    <p><b>IMPORTANTE</b> el usuario establecido sera con el que se accedera a la aplicación</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">NOMBRE</label>
+                            <input type="text" class="form-control" id="nuevoNombre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">USUARIO</label>
+                            <input type="text" class="form-control" id="nuevoUsuario">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">CONTRASEÑA:</label>
+                            <input type="password" class="form-control" id="nuevoContraseña">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">ROL</label>
+                            <select name="nuevoRol" id="nuevoRol" class="nuevoRol form-select" >
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                <option value="GESTIÓN">GESTIÓN</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">AREA</label>
+                            <select name="nuevoRol" id="nuevoArea" class="nuevoArea form-select" >
+                                <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                                <option value="EPIDEMIOLOGÍA">EPIDEMIOLOGÍA</option>
+                                <option value="BIOMEDICOS">BIOMEDICOS</option>
+                                <option value="FARMACOVIGILANCIA">FARMACOVIGILANCIA</option>
+                                <option value="FARMACOVIGILANCIA NIQUIA">FARMACOVIGILANCIA NIQUIA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <button class="btn form-control text-white" id="addNewUser" style="background-color: #233A5F; color: white;">AÑADIR NUEVO USUARIO</button>
+                        </div>
+                    </div>
+                    
+                </div>  
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div><!-- End Extra Large Modal-->
+    <div class="modal fade" id="modalEditarContraseña" tabindex="-1">
+        <div class="modal-dialog modal-xs modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>CAMBIAR CONTRASEÑA</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    <p><b>ADVERTENCIA</b> al cambiar la contraseña debera proporcionarla nuevamente al iniciar</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for=""><b>NUEVA CONTRASEÑA</b></label>
+                            <input type="password" class="form-control" id="contraseñaRest">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <button class="form-control btn btn-warning " id="updatePassword">ACTUALIZAR CONTRASEÑA</button>
+                        </div>
+                    </div>
+                </div>  
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div><!-- End Extra Large Modal-->
+    <div class="modal fade" id="modalEditarUsuario" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>ACTUALIZAR DATOS</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    <p><b>IMPORTANTE</b> al actualizar los datos del usuario estos cambian inmediatamente</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for=""><b>NOMBRE:</b></label>
+                            <input type="text" class="form-control" id="editarNombre">
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><b>USUARIO:</b></label>
+                            <input type="text" class="form-control" id="editarUsuario">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for=""><b>ESTADO:</b></label>
+                            <select name="" id="editarEstado" class="form-select">
+                                <option value="ACTIVO">ACTIVO</option>
+                                <option value="INACTIVO">INACTIVO</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>ROL:</b></label>
+                            <select name="nuevoRol" id="editarRol" class=" form-select" >
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                <option value="GESTIÓN">GESTIÓN</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for=""><b>AREA:</b></label>
+                            <select name="nuevoRol" id="editarArea" class=" form-select" >
+                                <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                                <option value="EPIDEMIOLOGÍA">EPIDEMIOLOGÍA</option>
+                                <option value="BIOMEDICOS">BIOMEDICOS</option>
+                                <option value="FARMACOVIGILANCIA">FARMACOVIGILANCIA</option>
+                                <option value="FARMACOVIGILANCIA NIQUIA">FARMACOVIGILANCIA NIQUIA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <button class="btn btn-warning btn-sm form-control" id="actualizarDatosUsuarios">ACTUALIZAR DATOS</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div><!-- End Extra Large Modal-->
 {% endblock %}
