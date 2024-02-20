@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var socket = io.connect('http://10.0.19.6:5000');
+    var socket = io.connect('http://10.0.255.243:8002');
 
     
     const getCasesforDatabase = (()=>{
@@ -11,7 +11,7 @@ $(document).ready(function () {
                 "url": "https://cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json"
             },
             ajax: {
-                url: 'http://10.0.19.6:5000/api/v1/getcases',
+                url: 'http://10.0.255.243:8002/api/v1/getcases',
                 dataSrc: ''
             },
             columns: [

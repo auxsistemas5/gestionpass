@@ -33,7 +33,7 @@ $(document).ready(function () {
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
-            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 $('#datosUsuarioSeleccionado').hide();
                 setTimeout(()=>{

@@ -42,3 +42,5 @@ def httpPutUsuarios(app,jsonify,db,request,generate_password_hash):
             except Exception as e:
                 query.close()
                 return jsonify({'error': e})
+            
+    

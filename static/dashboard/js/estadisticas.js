@@ -5,7 +5,7 @@ $(document).ready(()=>{
         var year = $('#selectFilterYear').val();
         $.ajax({
             type: "GET",
-            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCasesforYearAndArea/"+year+"/"+area,
+            url: "http://10.0.255.243/api/v1/gestionpass/getAllCasesforYearAndArea/"+year+"/"+area,
             success: function (response) {
                 if(charFilter){
                     charFilter.destroy();
@@ -70,7 +70,7 @@ $(document).ready(()=>{
 
     $.ajax({
         type: "GET",
-        url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCasesforStadistics",
+        url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCasesforStadistics",
         success: function (response) {
             if(response.length > 0){
                 if ($('#pieChart').length > 0) {
@@ -105,7 +105,7 @@ $(document).ready(()=>{
     });
     $.ajax({
         type: "GET",
-        url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCasesforMonthActually",
+        url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCasesforMonthActually",
         success: function (response) {
             if ($('#doughnutChart').length > 0) {
                 // Elemento existe, puedes crear el gráfico

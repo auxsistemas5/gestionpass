@@ -6,8 +6,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-center justify-content-center">
-                    <h3 class="text-dark"><b>TODOS LOS CASOS</b></h3>
+                <div class="card-header d-flex justify-content-center justify-content-center" style="background-color: #233A5F;">
+                    <h3 class="text-white"><b>TODOS LOS CASOS</b></h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive mt-3">
@@ -209,6 +209,302 @@
                 </div>  
                 <div class="modal-footer" style="background-color: #233A5F">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div><!-- End Extra Large Modal-->
+
+    <div class="modal fade" id="modalEditarCasoUsuario" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header d-flex justify-content-center" style="background-color: #233A5F;">
+                    
+                    <h3 class="modal-title text-white"><b>EDITAR CASO</b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <div id="datosUsuarioSeleccionado">
+                        <div class="row mt-2">
+
+                            <input hidden type="text" id="id" value="">
+                
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>FECHA REPORTE:</b></label>
+                                <input id="editarFechaReporte" class="form-control" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>FECHA DE OCURRENCIA:</b></label>
+                                <input class="form-control"  id="editarFechaOcurrencia" disabled>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <input class="form-check-input" type="checkbox" id='cambiar_fecha' role="switch" value=''>
+                                <label for="">CAMBIAR FECHAS</label>
+                            </div>
+                        </div>
+                        <div class="row mt-2" id='texto_alerta'>
+                            <div class="co-md-12">
+                                <p class="text-danger">SI NO DESEA MODIFICAR LAS FECHAS DE REPORTE Y OCURRENCIA DESMARQUE LA CASILLA</p>
+                            </div>
+                        </div>
+                        <div class="row " id='nueva_fecha'>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>NUEVA FECHA REPORTE:</b></label>
+                                <input type="date" class="form-control" id="fecha_reporte"  >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>NUEVA FECHA DE OCURRENCIA:</b></label>
+                                <input type="date" class="form-control" id="fecha_ocurrencia"  >
+                            </div>
+                            </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>FUNCIONARIO QUE NOTIFICA:</b></label>
+                                <input value="" id="editarFuncionario" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>CARGO DEL FUNCIONARIO:</b></label>
+                                <input value="" id="editarCargo" class="form-control">            
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>IDENTIFICACIÓN DEL PACIENTE:</b></label>
+                                <input value="" id="editarDocumento" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>NOMBRES DEL PACIENTE:</b></label>
+                                <input value="" id="editarNombrePaciente" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>APELLIDOS DEL PACIENTE:</b></label>
+                                <input value=""  id="editarApellido" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for="" class="text-black"><b>DESCRIPCIÓN DEL SUCESO:</b></label>
+                                <textarea name="" id="editarDescripcion" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                        </div>        
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>SERVICION DONDE OCURRIO EL SUCESO:</b></label>
+                                <select name="sitio_evento" id="editarSitioEvento" class="form-select">
+                                    
+                                    <option value="ADMISIONES">ADMISIONES</option>
+                                    <option value="AMBULANCIA">AMBULANCIA</option>
+                                        <option value="ARCHIVO CLÍNICO">ARCHIVO CLÍNICO</option>
+                                        <option value="CENTRO REGULADOR">CENTRO REGULADOR</option>
+                                        <option value="CIRUGÍA">CIRUGÍA</option>
+                                        <option value="CONSULTA EXTERNA">CONSULTA EXTERNA</option>
+                                        <option value="ENDOSCOPIA">ENDOSCOPIA</option>
+                                        <option value="EXPERIENCIA DEL USUARIO">EXPERIENCIA DEL USUARIO</option>
+                                        <option value="EXTERNO">EXTERNO</option>
+                                        <option value="FARMACIA">FARMACIA</option>
+                                        <option value="GESTIÓN CLÍNICA">GESTIÓN CLÍNICA</option>
+                                        <option value="IMAGENOLOGÍA">IMAGENOLOGÍA</option>
+                                        <option value="LABORATORIO">LABORATORIO</option>
+                                        <option value="MEDICINA INTERNA 1 - MIXTA">MEDICINA INTERNA 1 - MIXTA</option>
+                                        <option value="MEDICINA INTERNA 2">MEDICINA INTERNA 2</option>
+                                        <option value="MEDICINA INTERNA 3">MEDICINA INTERNA 3</option>
+                                        <option value="MEDICINA INTERNA 4">MEDICINA INTERNA 4</option>
+                                        <option value="MEDICINA INTERNA 5">MEDICINA INTERNA 5</option>
+                                        <option value="MEDICINA INTERNA 6">MEDICINA INTERNA 6</option>
+                                        <option value="MEDICINA INTERNA 7A">MEDICINA INTERNA 7A</option>
+                                        <option value="MEDICINA INTERNA 7B">MEDICINA INTERNA 7B</option>
+                                        <option value="MEDICINA INTERNA 8">MEDICINA INTERNA 8</option>
+                                        <option value="PEDIATRÍA 1">PEDIATRÍA 1</option>
+                                        <option value="PEDIATRÍA 2">PEDIATRÍA 2</option>
+                                        <option value="PREHOSPITALIZACIÓN">PREHOSPITALIZACIÓN</option>
+                                        <option value="SALUD PÚBLICA">SALUD PÚBLICA</option>
+                                        <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                                        <option value="SERVICIO DE ALIMENTACIÓN">SERVICIO DE ALIMENTACIÓN</option>
+                                        <option value="QUIRÚRGICA 1">QUIRÚRGICA 1</option>
+                                        <option value="QUIRÚRGICA 2">QUIRÚRGICA 2</option>
+                                        <option value="QUIRÚRGICA 3">QUIRÚRGICA 3</option>
+                                        <option value="QUIRÚRGICA 4">QUIRÚRGICA 4</option>
+                                        <option value="UCI">UCI</option>
+                                        <option value="URGENCIAS AUTOPISTA">URGENCIAS AUTOPISTA</option>
+                                        <option value="URGENCIAS NIQUIA">URGENCIAS NIQUIA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>SERVICIO DONDE SE REALIZA EL REPORTE:</b></label>
+                                <select name="sitio_reporte" id="editarSitioReporte" class="form-select">
+                                    
+                                    <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+                                        <option value="ADMISIONES">ADMISIONES</option>
+                                        <option value="AMBULANCIA">AMBULANCIA</option>
+                                        <option value="ARCHIVO CLÍNICO">ARCHIVO CLÍNICO</option>
+                                        <option value="CENTRO REGULADOR">CENTRO REGULADOR</option>
+                                        <option value="CIRUGÍA">CIRUGÍA</option>
+                                        <option value="CONSULTA EXTERNA">CONSULTA EXTERNA</option>
+                                        <option value="CONTROL DE INFECCIONES">CONTROL DE INFECCIONES</option>
+                                        <option value="ENDOSCOPIA">ENDOSCOPIA</option>
+                                        <option value="EXPERIENCIA DEL USUARIO">EXPERIENCIA DEL USUARIO</option>
+                                        <option value="EXTERNO">EXTERNO</option>
+                                        <option value="ESTUDIANTE">ESTUDIANTE</option>
+                                        <option value="FARMACIA">FARMACIA</option>
+                                        <option value="GESTIÓN CLÍNICA">GESTIÓN CLÍNICA</option>
+                                        <option value="GESTIÓN AMBIENTAL">GESTIÓN AMBIENTAL</option>
+                                        <option value="IMAGENOLOGÍA">IMAGENOLOGÍA</option>
+                                        <option value="LABORATORIO">LABORATORIO</option>
+                                        <option value="MÉDICO ESPECIALISTA">MÉDICO ESPECIALISTA</option>
+                                        <option value="MEDICINA INTERNA 1 - MIXTA">MEDICINA INTERNA 1 - MIXTA</option>
+                                        <option value="MEDICINA INTERNA 2">MEDICINA INTERNA 2</option>
+                                        <option value="MEDICINA INTERNA 3">MEDICINA INTERNA 3</option>
+                                        <option value="MEDICINA INTERNA 4">MEDICINA INTERNA 4</option>
+                                        <option value="MEDICINA INTERNA 5">MEDICINA INTERNA 5</option>
+                                        <option value="MEDICINA INTERNA 6">MEDICINA INTERNA 6</option>
+                                        <option value="MEDICINA INTERNA 7A">MEDICINA INTERNA 7A</option>
+                                        <option value="MEDICINA INTERNA 7B">MEDICINA INTERNA 7B</option>
+                                        <option value="MEDICINA INTERNA 8">MEDICINA INTERNA 8</option>
+                                        <option value="NUTRICIÓN">NUTRICIÓN</option>
+                                        <option value="PEDIATRÍA 1">PEDIATRÍA 1</option>
+                                        <option value="PEDIATRÍA 2">PEDIATRÍA 2</option>
+                                        <option value="PSICOLOGÍA">PSICOLOGÍA</option>
+                                        <option value="PREHOSPITALIZACIÓN">PREHOSPITALIZACIÓN</option>
+                                        <option value="QUIRÚRGICA 1">QUIRÚRGICA 1</option>
+                                        <option value="QUIRÚRGICA 2">QUIRÚRGICA 2</option>
+                                        <option value="QUIRÚRGICA 3">QUIRÚRGICA 3</option>
+                                        <option value="QUIRÚRGICA 4">QUIRÚRGICA 4</option>
+                                        <option value="SALUD PÚBLICA">SALUD PÚBLICA</option>
+                                        <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                                        <option value="SERVICIO DE ALIMENTACIÓN">SERVICIO DE ALIMENTACIÓN</option>
+                                        <option value="TRABAJO SOCIAL">TRABAJO SOCIAL</option>
+                                        <option value="TERAPIA RESPIRATORIA">TERAPIA RESPIRATORIA</option>
+                                        <option value="TERAPIA  FISICA">TERAPIA  FISICA</option>
+                                        <option value="UCI">UCI</option>
+                                        <option value="URGENCIAS AUTOPISTA">URGENCIAS AUTOPISTA</option>
+                                        <option value="URGENCIAS NIQUIA">URGENCIAS NIQUIA</option>
+                                </select>
+                            </div>
+                        </div>
+                
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>SERIE</b></label>
+                                <input type="text" id="editarSerie" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>MARCA</b></label>
+                                <input type="text" id="editarMarca" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>LOTE</b></label>
+                                <input type="text" id="editarLote" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>REQUIERE ANALISIS</b></label>
+                                <select name="" id="editarAnalisis" class="form-select">
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="text-black"><b>DESCARTAR CASO</b></label>
+                                <select name="" id="editarDescarte" class="form-select">
+                                    <option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for="" class="text-black"><b>CASO ASIGNADO AL ÁREA:</b></label>
+                                <select name="asignado" id="editarAsignado" class="form-select">
+                                    <option value="">SIN ASIGNAR</option>
+                                    <option value="BIOMEDICOS">BIOMEDICOS</option>
+                                    <option value="EPIDEMIOLOGÍA">EPIDEMIOLOGÍA</option>
+                                    <option value="SEGURIDAD DEL PACIENTE">SEGURIDAD DEL PACIENTE</option>
+                                    <option value="FARMACOVIGILANCIA">FARMACOVIGILANCIA</option>
+                                    <option value="FARMACOVIGILANCIA NIQUIA">FARMACOVIGILANCIA NIQUIA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>TIPO DE EVENTO:</b></label>
+                                <input type="text" id="editarEvento" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>PESO PACIENTE:</b></label>
+                                <input type="text" id="editarPeso" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>EDAD PACIENTE:</b></label>
+                                <input type="text" id="editarEdad" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>GENERO:</b></label>
+                                <input type="text" id="editarGenero" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>MEDICAMENTO SOSPECHOSO:</b></label>
+                                <input type="text" class="form-control" id="editarSospechoso">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>MEDICAMENTO CONCOMINANTE:</b></label>
+                                <input type="text" class="form-control" id="editarConcomitante">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>VIA DE ADMINISTRACIÓN:</b></label>
+                                <input type="text" class="form-control" id="editarAdministracion">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label for=""><b>FECHA INICIO:</b></label>
+                                <input type="text" class="form-control" id="editarInicio">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>DOSIS:</b></label>
+                                <input type="text" class="form-control" id="editarDosis">
+                            </div>
+                            <div class="col-md-4">
+                                <label for=""><b>FRECUENCIA DE ADMINISTRACIÓN:</b></label>
+                                <input type="text" class="form-control" id="editarFrecuencia">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>MOMENTO EN QUE SE SUSPENDIO:</b></label>
+                                <textarea name="" class="form-control" id="editarSuspendio" cols="30" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label for=""><b>DIAGNOSTICO Y ENFERMEDADES CONCOMITANTES:</b></label>
+                                <textarea name="" class="form-control" id="editarDiagnostico" cols="30" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>INFORMACIÓN SOBRE EVOLUCIÓN(INICIO EVOLUCIÓN Y DESENLACE):</b></label>
+                                <textarea name="" class="form-control" id="editarEvolucion" cols="30" rows="5"></textarea>
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div id="buttonActualizar"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>  
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">CERRAR</button>
                     
                 </div>
             </div>
