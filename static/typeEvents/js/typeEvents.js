@@ -5,7 +5,7 @@ $(document).ready(function () {
     //crea la tabla de usuarios con los datos devueltos de la api
     $('#table_typeEvent').DataTable({
         ajax: {
-            url: 'http://10.0.19.162:8002/api/v1/gestionpass/getAllTypeEvents',
+            url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllTypeEvents',
             dataSrc: ''
         },
         columns: [
@@ -33,7 +33,7 @@ $(document).ready(function () {
             FormData = {namevent: $('#nameEvent').val()}
             $.ajax({
                 type: "POST",
-                url: "http://10.0.19.162:8002/api/v1/gestionpass/addNewTypeEvent",
+                url: "http://10.0.255.243:8002/api/v1/gestionpass/addNewTypeEvent",
                 data: FormData,
                 dataType: "json",
                 success: function (response) {

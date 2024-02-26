@@ -5,7 +5,7 @@ $(document).ready(()=>{
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
-            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 $('#datosUsuarioSeleccionado').hide();
                 setTimeout(()=>{
@@ -65,7 +65,7 @@ $(document).ready(()=>{
     }
     $('#table_case').DataTable({
         ajax: {
-            url: 'http://10.0.19.162:8002/api/v1/gestionpass/getAllCases',
+            url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllCases',
             dataSrc: ''
         },
         columns: [
@@ -107,7 +107,7 @@ $(document).ready(()=>{
         },2000)
         $.ajax({
             type: "GET",
-            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 
                 $('#datosUsuarioSeleccionado').hide();
@@ -186,7 +186,7 @@ $(document).ready(()=>{
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://10.0.19.162:8002/api/v1/gestionpass/cases/updateCaseById/"+id,
+                        url: "http://10.0.255.243:8002/api/v1/gestionpass/cases/updateCaseById/"+id,
                         data: FormData,
                         dataType: "json",
                         success: function (response) {

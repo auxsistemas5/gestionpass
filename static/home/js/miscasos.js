@@ -6,7 +6,7 @@ $(document).ready(function () {
     }
     $('#casos_area').DataTable({
         ajax: {
-            url: 'http://10.0.19.162:8002/api/v1/gestionpass/getAllCasesByArea/'+area,
+            url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllCasesByArea/'+area,
             dataSrc: ''
         },
         columns: [
@@ -34,7 +34,7 @@ $(document).ready(function () {
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
-            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 $('#datosUsuarioSeleccionado').hide();
                 setTimeout(()=>{
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "GET",
-                url: "http://10.0.19.162:8002/api/v1/gestionpass/analisis/getAnalisisById/"+id,
+                url: "http://10.0.255.243:8002/api/v1/gestionpass/analisis/getAnalisisById/"+id,
                 success: function (response) {
                     if(response.estado === "no requiere analisis"){
                         $('#mensajeRespuesta').html('<p>EL CASO ESTA DEFINIDO COMO ACCIÓN  INSEGURA QUE NO REQUIERE ANALISIS O ESTA DESCARTADO, SI DESEA REALIZAR UN ANALISIS POR FAVOR VAYA A LA EDICIÓN DEL CASO Y CAMBIE LA OPCIÓN PARA PODER GENERAR O VER EL ANALISIS</p>'); 
@@ -121,7 +121,7 @@ $(document).ready(function () {
                         $('#severidad').val(response.analisis[8]);
                         
                         $('#aseguradoras').val(response.analisis[11]);
-                        fetch("http://10.0.19.162:8002/api/v1/gestionpass/analisis/getAseguradoras")
+                        fetch("http://10.0.255.243:8002/api/v1/gestionpass/analisis/getAseguradoras")
                         .then(response => response.json())
                         .then(data => {
                             // Iterar sobre las opciones y agregarlas al select
@@ -134,7 +134,7 @@ $(document).ready(function () {
                             });
                         });
                         $('#crearNuevoAnalisis').hide();
-                        fetch("http://10.0.19.162:8002/api/v1/gestionpass/getAllTypeEventsFormat")
+                        fetch("http://10.0.255.243:8002/api/v1/gestionpass/getAllTypeEventsFormat")
                         .then(response => response.json())
                         .then(data => {
                             // Iterar sobre las opciones y agregarlas al select
@@ -205,7 +205,7 @@ $(document).ready(function () {
 
                             $.ajax({
                                 type: "POST",
-                                url: "http://10.0.19.162:8002/api/v1/gestionpass/analisis/addAnalisis",
+                                url: "http://10.0.255.243:8002/api/v1/gestionpass/analisis/addAnalisis",
                                 data: FormData,
                                 dataType: "json",
                                 success: function (response) {
@@ -234,7 +234,7 @@ $(document).ready(function () {
                         }
                         $.ajax({
                             type: "POST",
-                            url: "http://10.0.19.162:8002/api/v1/gestionpass/analisis/updateAnalisis",
+                            url: "http://10.0.255.243:8002/api/v1/gestionpass/analisis/updateAnalisis",
                             data: FormData,
                             dataType: "json",
                             success: function (response) {
