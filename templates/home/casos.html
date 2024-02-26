@@ -191,17 +191,21 @@
                             
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>ASIGNADO A </b></label>
                                 <div id="asignado"></div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>DESCARTADO</b></label>
                                 <div id="descartado"></div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>REQUIERE ANALISIS</b></label>
                                 <div id="analisis"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for=""><b>CLASIFICACIÓN</b></label>
+                                <div id="editarClasificar"></div>
                             </div>
                         </div>
                     </div>
@@ -293,7 +297,7 @@
                         </div>        
                         <div class="row mt-2">
                             <div class="col-md-6">
-                                <label for="" class="text-black"><b>SERVICION DONDE OCURRIO EL SUCESO:</b></label>
+                                <label for="" class="text-black"><b>SERVICIO DONDE OCURRIO EL SUCESO:</b></label>
                                 <select name="sitio_evento" id="editarSitioEvento" class="form-select">
                                     
                                     <option value="ADMISIONES">ADMISIONES</option>
@@ -401,16 +405,25 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-6">
+                            <div class="col-md-4" id="clasAnalisis">
                                 <label for="" class="text-black"><b>REQUIERE ANALISIS</b></label>
-                                <select name="" id="editarAnalisis" class="form-select">
+                                <select title="requiere analisis" name="editarAnalisis" id="editarAnalisis" class="form-select">
                                     <option value="1">SI</option>
                                     <option value="0">NO</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4" id="clasificarOp">
+                                <label for="" class="text-black"><b>CLASIFICAR CASO COMO:</b></label>
+                                <select title="clasificacion de caso" name="editarClasificarCaso" id="editarClasificarCaso" class="form-select">
+                                    <option value="NO">NO APLICA CLASIFICACIÓN</option>
+                                    <option value="ACCION INSEGURA">ACCIÓN INSEGURA QUE NO REQUIERE ANALISIS</option>
+                                    <option value="INCIDENTE">INCIDENTE QUE NO REQUIERE ANALISIS</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" id="descarteDeCaso">
                                 <label for="" class="text-black"><b>DESCARTAR CASO</b></label>
-                                <select name="" id="editarDescarte" class="form-select">
+                                <select title="seleccionar descarte" name="" id="editarDescarte" class="form-select">
+                                    <option value="">SIN ESPECIFICAR</option>
                                     <option value="1">SI</option>
                                     <option value="0">NO</option>
                                 </select>

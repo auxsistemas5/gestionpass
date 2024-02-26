@@ -13,21 +13,24 @@
                 </div>
                 <div class="card-body mt-3">
                     <div hidden><input type="text" id="userType" value="{{session['area']}}"></div>
-                    <table class="table" id="casos_area">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>FECHA REPORTE</th>
-                                <th>FECHA OCURRENCIA</th>
-                                <th>SITIO REPORTE</th>
-                                <th>SITIO EVENTO</th>
-                                <th>OPCIONES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="table-responsive">
 
-                        </tbody>
-                    </table>
+                        <table class="table" id="casos_area">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>FECHA REPORTE</th>
+                                    <th>FECHA OCURRENCIA</th>
+                                    <th>SITIO REPORTE</th>
+                                    <th>SITIO EVENTO</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -187,17 +190,21 @@
                             
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>ASIGNADO A </b></label>
                                 <div id="asignado"></div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>DESCARTADO</b></label>
                                 <div id="descartado"></div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for=""><b>REQUIERE ANALISIS</b></label>
                                 <div id="analisis"></div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for=""><b>CLASIFICACIÓN</b></label>
+                                <div id="incidente"></div>
                             </div>
                         </div>
                     </div>
@@ -210,4 +217,141 @@
             </div>
         </div>
     </div><!-- End Extra Large Modal-->
+    <div class="modal fade" id="modalAnalisisCaso" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header " style="background-color: #233A5F;">
+                    <h3 class="modal-title text-white"><b>
+                    {% if session["area"] == "SEGURIDAD DEL PACIENTE" %}
+                        ANALISIS
+                    {% elif session["area"] == "FARMACOVIGILANCIA" or session["area"] == "FARMACOVIGILANCIA NIQUIA"  %}
+                        FARMACOANALISIS
+                    {% endif %}
+                    </b></h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #fff;"></button>
+                </div>
+                <div class="modal-body">
+                    <div >
+                        <input type="text" value="{{session['area'] }}" id="clasificacionArea" hidden>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="mensajeRespuesta"></div>
+                        </div>
+                    </div>
+                    <div class="analisisCaso">
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>EVALUACIÓN HECHOS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea  name="" id="hechos" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>ACCIONES INSEGURAS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea  name="" id="inseguras" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>FACTORES INHERENTES AL PACIENTE:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea  name="" id="inherentes" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>FACTORES CONTRIBUTIVOS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea  name="" id="contributivos" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>OPORTUNIDADES DE MEJORA:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea  name="" id="mejora" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row  mt-2">
+                    
+                            <div class="col-md-12">
+                                <label for=""><b>CLASIFICACIÓN FINAL</b></label>
+                                <select name="" id="clasificacion" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="ACCIÓN INSEGURA">ACCIÓN INSEGURA</option>
+                                    <option value="COMPLICACIÓN">COMPLICACIÓN</option>
+                                    <option value="EVENTO ADVERSO">EVENTO ADVERSO</option>
+                                    <option value="EVENTO CENTINELA">EVENTO CENTINELA</option>
+                                    <option value="INCIDENTE">INCIDENTE</option>
+                                    <option value="FALLA LATENTE">FALLA LATENTE</option>
+                                    <option value="FALLA DE ATENCIÓN EN LA SALUD">FALLA DE ATENCIÓN EN LA SALUD</option>
+                                    <option value="DESCARTAR CASO">DESCARTAR CASO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            
+                            <div class="col-md-12">
+                                <label for=""><b>BARRERAS DE SEGURIDAD:</b></label>
+                                <textarea  name="" id="barrera" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row  mt-2" id="eventoTipo">
+                    
+                            <div class="col-md-12">
+                                <label for=""><b>TIPO EVENTO:</b></label>
+                                <select name="" id="tipoEventoCaso" class="form-select"></select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for=""><b>CONDICION:</b></label>
+                                <select name="" id="condicion" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="PREVENIBLE">PREVENIBLE</option>
+                                    <option value="NO PREVENIBLE">NO PREVENIBLE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for=""><b>SEVERIDAD</b></label>
+                                <select name="" id="severidad" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="LEVE">LEVE</option>
+                                    <option value="MODERADO">MODERADO</option>
+                                    <option value="GRAVE">GRAVE</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>ASEGURADOR</b></label>
+                                <select name="" id="aseguradoras" class="form-select"></select>
+                            </div>
+                        </div>
+                        <div class="row mt-3" >
+                            <div class="col-md-12" id="actualizacionAnalisis">
+                                <button type="button" class="btn btn-warning form-control" id="actualizarAnalisis"><b>ACTUALIZAR ANALISIS</b></button>
+                            </div>
+                            <div class="col-md-12" id="crearNuevoAnalisis">
+                                <button type="button" class="btn btn-warning form-control" id="crearAnalisis"><b>CREAR NUEVO ANALISIS</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #233A5F">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

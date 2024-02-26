@@ -5,7 +5,7 @@ $(document).ready(()=>{
         $('#modalDetallesCaso').modal('show');
         $.ajax({
             type: "GET",
-            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 $('#datosUsuarioSeleccionado').hide();
                 setTimeout(()=>{
@@ -54,6 +54,7 @@ $(document).ready(()=>{
                 response[28] != ""? $('#asignado').html(response[28]): $('#asignado').html('<span class="badge bg-warning">NO ESPECIFICADO</span>');   
                 response[29] == 1? $('#descartado').html('<p>SI</p>'): $('#descartado').html('<p>NO</p>');   
                 response[30] == 1? $('#analisis').html('<p>SI</p>'): $('#analisis').html('<p>NO</p>');   
+                $('#editarClasificar').html(response[31]);   
             }
         });
         
@@ -64,7 +65,7 @@ $(document).ready(()=>{
     }
     $('#table_case').DataTable({
         ajax: {
-            url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllCases',
+            url: 'http://10.0.19.162:8002/api/v1/gestionpass/getAllCases',
             dataSrc: ''
         },
         columns: [
@@ -106,7 +107,7 @@ $(document).ready(()=>{
         },2000)
         $.ajax({
             type: "GET",
-            url: "http://10.0.255.243:8002/api/v1/gestionpass/getAllCaseById/"+id,
+            url: "http://10.0.19.162:8002/api/v1/gestionpass/getAllCaseById/"+id,
             success: function (response) {
                 
                 $('#datosUsuarioSeleccionado').hide();
@@ -128,14 +129,15 @@ $(document).ready(()=>{
                 $('#editarSerie').val(response[11]);
                 $('#editarMarca').val(response[12]);
                 $('#editarLote').val(response[13]);
-                $('#editarAnalisis').val(response[30]);
+                
+                $('#editarClasificarCaso').val(response[31]);
                 $('#editarDescarte').val(response[29]);
                 $('#editarAsignado').val(response[28]);
                 $('#editarEvento').val(response[15]);
                 $('#editarPeso').val(response[16]);
                 $('#editarEdad').val(response[17]);
                 $('#editarGenero').val(response[18]);
-
+                $('#editarAnalisis').val(response[30]);
                 $('#editarSospechoso').val(response[19]);
                 $('#editarConcomitante').val(response[20]);
                 $('#editarAdministracion').val(response[21]);
@@ -146,6 +148,8 @@ $(document).ready(()=>{
                 $('#editarDiagnostico').val(response[26]);
                 $('#editarEvolucion').val(response[27]);
                 $('#buttonActualizar').html(`<button type="button" data-id="${id}" id="botonActualizarCaso" class="form-control btn btn-warning"><b>ACTUALIZAR</b></button>`)
+                
+
                   
                 $('#botonActualizarCaso').click(function() {
                     var id = $(this).data('id');
@@ -177,11 +181,12 @@ $(document).ready(()=>{
                         frecuencia: $('#editarFrecuencia').val(),
                         suspendido: $('#editarSuspendio').val(),
                         diagnostico:  $('#editarDiagnostico').val(),
-                        evolucion: $('#editarEvolucion').val()
+                        evolucion: $('#editarEvolucion').val(),
+                        clasCaso: $('#editarClasificarCaso').val()
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://10.0.255.243:8002/api/v1/gestionpass/cases/updateCaseById/"+id,
+                        url: "http://10.0.19.162:8002/api/v1/gestionpass/cases/updateCaseById/"+id,
                         data: FormData,
                         dataType: "json",
                         success: function (response) {
@@ -203,6 +208,36 @@ $(document).ready(()=>{
                                 });
                                 $('#modalEditarCasoUsuario').modal('hide');
                             }
+                            $('#editarFechaReporte').val('');
+                            $('#editarFechaOcurrencia').val('');
+                            $('#editarFuncionario').val('');
+                            $('#editarCargo').val('');
+                            $('#editarDocumento').val('');
+                            $('#editarNombrePaciente').val('');
+                            $('#editarApellido').val('');
+                            $('#editarDescripcion').val('');
+                            $('#editarSitioEvento').val('');
+                            $('#editarSitioReporte').val('');
+                            $('#editarSerie').val('');
+                            $('#editarMarca').val('');
+                            $('#editarLote').val('');
+                            $('#editarClasificarCaso').val('');
+                            $('#editarDescarte').val('');
+                            $('#editarAsignado').val('');
+                            $('#editarEvento').val('');
+                            $('#editarPeso').val('');
+                            $('#editarEdad').val('');
+                            $('#editarGenero').val('');
+
+                            $('#editarSospechoso').val('');
+                            $('#editarConcomitante').val('');
+                            $('#editarAdministracion').val('');
+                            $('#editarInicio').val('');
+                            $('#editarDosis').val('');
+                            $('#editarFrecuencia').val('');
+                            $('#editarSuspendio').val('');
+                            $('#editarDiagnostico').val('');
+                            $('#editarEvolucion').val('');
                         },
                         error: function(error){
                             $('.toastMessage').html('Error al intentar actualizar comuniquese con T.I');

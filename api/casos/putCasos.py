@@ -37,8 +37,17 @@ def httpPutCases(app,jsonify,db,request):
                 suspendido = request.form['suspendido']
                 diagnostico = request.form['diagnostico']
                 evolucion = request.form['evolucion']
+                clasCaso = request.form['clasCaso']
                 
-                query.execute("UPDATE casos SET funcionario_reporta = %s, cargo_funcionario = %s,doc_paciente = %s ,nom_paciente = %s,ape_paciente = %s,descripcion_evento = %s,sitio_evento = %s, sd_reporte = %s,serie =%s,marca =%s,lote=%s,asignado_a=%s,req_analisis = %s,descartado =%s,peso_paciente = %s,tipoEvento = %s,edad = %s,genero = %s,m_sospechoso =%s,m_concomitante = %s,v_administracion = %s,fecha_inicio = %s,dosis = %s,f_administracion = %s,suspendido =%s,diagnostico =%s, informacion = %s WHERE id = %s", (funcionario,cargo,documento,nombrePaciente,apellidoPaciente, descripcion,sitioEvento,sitioReporte,serie,marca,lote,asignado,analisis,descarte,peso,evento,edad,genero,sospechoso,concomitante,administracion,inicio,dosis,frecuencia,suspendido,diagnostico,evolucion,id))
+                
+                
+                if analisis == "1":
+                    descarte = 0
+                    clasCaso = "NO"
+                    
+                
+                
+                query.execute("UPDATE casos SET funcionario_reporta = %s, cargo_funcionario = %s,doc_paciente = %s ,nom_paciente = %s,ape_paciente = %s,descripcion_evento = %s,sitio_evento = %s, sd_reporte = %s,serie =%s,marca =%s,lote=%s,asignado_a=%s,req_analisis = %s,descartado =%s,peso_paciente = %s,tipoEvento = %s,edad = %s,genero = %s,m_sospechoso =%s,m_concomitante = %s,v_administracion = %s,fecha_inicio = %s,dosis = %s,f_administracion = %s,suspendido =%s,diagnostico =%s, informacion = %s, clasAnalisis = %s WHERE id = %s", (funcionario,cargo,documento,nombrePaciente,apellidoPaciente, descripcion,sitioEvento,sitioReporte,serie,marca,lote,asignado,analisis,descarte,peso,evento,edad,genero,sospechoso,concomitante,administracion,inicio,dosis,frecuencia,suspendido,diagnostico,evolucion,clasCaso,id))
                 
                 db.connection.commit()
                 query.close()

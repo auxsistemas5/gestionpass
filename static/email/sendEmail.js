@@ -17,7 +17,7 @@ $(document).ready(() => {
             
             $.ajax({
                 type: "POST",
-                url: "http://10.0.255.243:8002/gestionpass/email/send_email",
+                url: "http://10.0.19.162:8002/gestionpass/email/send_email",
                 data: formData,
                 contentType: false,
                 processData: false,

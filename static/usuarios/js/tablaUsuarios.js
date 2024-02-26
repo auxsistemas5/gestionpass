@@ -8,7 +8,7 @@ $(document).ready(function () {
     //crea la tabla de usuarios con los datos devueltos de la api
     $('#tabla-usuarios').DataTable({
         ajax: {
-            url: 'http://10.0.255.243:8002/api/v1/gestionpass/getAllUsers',
+            url: 'http://10.0.19.162:8002/api/v1/gestionpass/getAllUsers',
             dataSrc: ''
         },
         columns: [
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 FormData = {user_id: id,contrasena : contrasenaRestablecida}
                 $.ajax({
                     type: "POST",
-                    url: "http://10.0.255.243:8002/api/v1/gestionpass/users/updatePassword",
+                    url: "http://10.0.19.162:8002/api/v1/gestionpass/users/updatePassword",
                     data: FormData,
                     dataType: "json",
                     //devuelve el objeto response con exito o error y muestra el modal dependiendo del mensaje
@@ -99,7 +99,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "http://10.0.255.243:8002/api/v1/gestionpass/getUserById/"+id,
+            url: "http://10.0.19.162:8002/api/v1/gestionpass/getUserById/"+id,
             success: function (response) {
                 $('#editarNombre').val(response[0]);
                 $('#editarUsuario').val(response[1]);
@@ -126,7 +126,7 @@ $(document).ready(function () {
                 FormData = {nombre:nombre,usuario:usuario,rol:rol,area: area,estado:estado}
                 $.ajax({
                     type: "POST",
-                    url: "http://10.0.255.243:8002/api/v1/gestionpass/users/updateDatesUser/"+id,
+                    url: "http://10.0.19.162:8002/api/v1/gestionpass/users/updateDatesUser/"+id,
                     data: FormData,
                     dataType: "json",
                     success: function (response) {
@@ -185,7 +185,7 @@ $(document).ready(function () {
                 FormData = {nombre : nombre,usuario: usuario,contrasena: contrasena,rol: rol, area: area}
                 $.ajax({
                     type: "POST",
-                    url: "http://10.0.255.243:8002/api/v1/gestionpass/users/addNewUser",
+                    url: "http://10.0.19.162:8002/api/v1/gestionpass/users/addNewUser",
                     data: FormData,
                     dataType: "json",
                     //devuelve el mensaje segun la respuesta de la peticion

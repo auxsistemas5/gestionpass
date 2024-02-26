@@ -14,7 +14,7 @@ from database.mysql_connect import connectdb
 from api.api import RestFullApi
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://10.0.255.243:8080"}})
+CORS(app, resources={r"/*": {"origins": "http://10.0.19.162:8002"}})
 
 # Generar una clave secreta aleatoria
 clave_secreta = os.urandom(24)
@@ -32,4 +32,4 @@ routes(app, render_template, db,pd,send_file, request,jsonify,redirect,url_for,s
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8002, host="10.0.255.243")
+    app.run(debug=True, port=8002, host="10.0.19.162")

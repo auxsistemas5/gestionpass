@@ -85,11 +85,11 @@ def httpGetCasos(app,jsonify,db):
     @app.route('/api/v1/gestionpass/getAllCaseById/<id>', methods=["GET"])
     def getAllCaseById(id):
         query = db.connection.cursor()
-        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote,file,tipoEvento,peso_paciente,edad,genero,m_sospechoso,m_concomitante,v_administracion,fecha_inicio,dosis,f_administracion,suspendido,diagnostico,informacion,asignado_a,descartado,req_analisis FROM casos where id = %s', (id,))
+        query.execute('SELECT id,fecha_reporte,fecha_ocurrencia,funcionario_reporta, cargo_funcionario,doc_paciente,nom_paciente,ape_paciente,descripcion_evento,sitio_evento,sd_reporte,serie,marca,lote,file,tipoEvento,peso_paciente,edad,genero,m_sospechoso,m_concomitante,v_administracion,fecha_inicio,dosis,f_administracion,suspendido,diagnostico,informacion,asignado_a,descartado,req_analisis,clasAnalisis FROM casos where id = %s', (id,))
         casos = query.fetchone()
         query.close()
         
-        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13],casos[14],casos[15],casos[16],casos[17],casos[18],casos[19],casos[20],casos[21],casos[22],casos[23],casos[24],casos[25],casos[26],casos[27],casos[28],casos[29],casos[30]]
+        casos_list = [casos[0],format_date(casos[1]), format_date(casos[2]),casos[3],casos[4],casos[5],casos[6],casos[7],casos[8],casos[9],casos[10],casos[11],casos[12],casos[13],casos[14],casos[15],casos[16],casos[17],casos[18],casos[19],casos[20],casos[21],casos[22],casos[23],casos[24],casos[25],casos[26],casos[27],casos[28],casos[29],casos[30],casos[31]]
 
         return jsonify(casos_list)
     
