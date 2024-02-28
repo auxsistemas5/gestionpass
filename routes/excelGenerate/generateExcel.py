@@ -50,8 +50,13 @@ def generateExcel(app,db,pd,send_file):
                         analisis.clasificacion as ANALISIS_CLASIFICACION, \
                         analisis.severidad as ANALISIS_SEVERIDAD, \
                         analisis.barrera_seguridad as ANALISIS_BARRERA_SEGURIDAD, \
-                        analisis.tipo_evento as ANALISIS_TIPO_EVENTO, \
-                        analisis.asegurador as ANALISIS_ASEGURADORA FROM  casos LEFT JOIN analisis ON analisis.id_caso= casos.id WHERE casos.fecha_reporte BETWEEN %s AND %s ORDER BY casos.id', (fechaInicio, fechaFin))
+                        CASE WHEN tipo_evento.nombre_evento IS NULL THEN "NO APLICA O DESCONOCIDO" \
+                            ELSE tipo_evento.nombre_evento \
+                        END AS ANALISIS_TIPO_EVENTO, \
+                        analisis.asegurador as ANALISIS_ASEGURADORA FROM  casos \
+                        LEFT JOIN analisis ON analisis.id_caso= casos.id \
+                        LEFT JOIN tipo_evento ON analisis.tipo_evento = tipo_evento.id \
+                        WHERE casos.fecha_reporte BETWEEN %s AND %s ORDER BY casos.id', (fechaInicio, fechaFin))
                     
                 elif tipo == "ocurrencia":
                     query.execute('SELECT casos.id, casos.fecha_reporte as CASO_FECHA_REPORTE, \
@@ -96,8 +101,13 @@ def generateExcel(app,db,pd,send_file):
                                 analisis.clasificacion as ANALISIS_CLASIFICACION, \
                                 analisis.severidad as ANALISIS_SEVERIDAD, \
                                 analisis.barrera_seguridad as ANALISIS_BARRERA_SEGURIDAD, \
-                                analisis.tipo_evento as ANALISIS_TIPO_EVENTO, \
-                                analisis.asegurador as ANALISIS_ASEGURADORA FROM casos LEFT JOIN analisis ON analisis.id_caso= casos.id WHERE casos.fecha_ocurrencia BETWEEN %s AND %s ORDER BY casos.id', (fechaInicio, fechaFin))
+                                CASE WHEN tipo_evento.nombre_evento IS NULL THEN "NO APLICA O DESCONOCIDO" \
+                                    ELSE tipo_evento.nombre_evento \
+                                END AS ANALISIS_TIPO_EVENTO, \
+                                analisis.asegurador as ANALISIS_ASEGURADORA FROM casos \
+                                LEFT JOIN analisis ON analisis.id_caso= casos.id \
+                                LEFT JOIN tipo_evento ON analisis.tipo_evento = tipo_evento.id \
+                                WHERE casos.fecha_ocurrencia BETWEEN %s AND %s ORDER BY casos.id', (fechaInicio, fechaFin))
 
                 data = query.fetchall()
 
@@ -178,9 +188,14 @@ def generateExcel(app,db,pd,send_file):
                         analisis.clasificacion as ANALISIS_CLASIFICACION, \
                         analisis.severidad as ANALISIS_SEVERIDAD, \
                         analisis.barrera_seguridad as ANALISIS_BARRERA_SEGURIDAD, \
-                        analisis.tipo_evento as ANALISIS_TIPO_EVENTO, \
+                        CASE WHEN tipo_evento.nombre_evento IS NULL THEN "NO APLICA O DESCONOCIDO" \
+                            ELSE tipo_evento.nombre_evento \
+                        END AS ANALISIS_TIPO_EVENTO, \
                         analisis.asegurador as ANALISIS_ASEGURADORA \
-                        FROM casos LEFT JOIN analisis ON analisis.id_caso = casos.id ORDER BY casos.id')
+                        FROM casos \
+                        LEFT JOIN analisis ON analisis.id_caso = casos.id \
+                        LEFT JOIN tipo_evento ON analisis.tipo_evento = tipo_evento.id \
+                        ORDER BY casos.id')
                 
                 data = query.fetchall()
 

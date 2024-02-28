@@ -346,6 +346,188 @@
                             </div>
                         </div>
                     </div>
+                    <div class="farmacoAnalisis">
+                        <div class="row mt-2">
+           
+                            <div class="col-md-12">
+                
+                                <label for="" class="text-black"><b>SELECCIONE TIPO:</b></label>
+                                <select name="tip" id="farmacotip" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="RAM">RAM</option>
+                                    <option value="PRUM">PRUM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" id="tipos">
+                            <div class="col-md-12">
+                
+                                <label for="" class="text-black"><b>TIPOS DE REACCIÓN:</b></label>
+                                <select class="form-select" name="" id="farmacoreaccion">
+                                    <option value="">A</option>
+                                    <option value="">B</option>
+                                    <option value="">C</option>
+                                    <option value="">D</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" id="tprum">
+                            <div class="col-md-12">
+                
+                                <label for="" class="text-black"><b>TIPO DE PRUM:</b></label>
+                                <select class="form-select" name="" id="farmaco_tipos_prum">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="ADMINISTRACIÓN/USO">ADMINISTRACIÓN/USO</option>
+                                    <option value="DISPENSACIÓN">DISPENSACIÓN</option>
+                                    <option value="DISPONIBILIDAD">DISPONIBILIDAD</option>
+                                    <option value="PRESCRIPCIÓN">PRESCRIPCIÓN</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" id="treacT">
+                
+                                <label for="" class="text-black"><b>REACCIÓN DESENCADENANTE:</b></label>
+                                <select class="form-select"  id="farmaco_treac">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row id_reaccion" name="id_reaccion" id="tPreaction">
+                            <div class="col-md-12">
+                
+                                <label for="" class="text-black"><b>REACCIÓN:</b></label>
+                                <textarea class="form-control" name="" id="farmaco_tpreaccion" cols="30" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="tpReaccionP">
+                                <label class="text-black" for=""><b>TIPO DE EVENTO</b></label>
+                                <select name="" id="farmaco_tpReaccion" class="form-select">
+                                    <OPTION value="">SELECCIONE</OPTION>
+                                    <option value="NECESIDAD">NECESIDAD</option>
+                                    <option value="EFECTIVIDAD">EFECTIVIDAD</option>
+                                    <option value="SEGURIDAD">SEGURIDAD</option>
+                                </select>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="" class="text-black"><b>CAUSALIDAD</b></label>
+                                <select name="" id="farmaco_causalidad" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="DEFINIDA">DEFINIDA</option>
+                                    <option value="POSIBLE">POSIBLE</option>
+                                    <option value="PROBABLE">PROBABLE</option>
+                                    <option value="DUDOSA">DUDOSA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-black" for=""><b>SEVERIDAD</b></label>
+                                <select name="" class="form-select" id="farmaco_severidad">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="LEVE">LEVE</option>
+                                    <option value="MODERADA">MODERADA</option>
+                                    <option value="GRAVE">GRAVE</option>
+                                    <option value="MORTAL">MORTAL</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-black" for=""><b>TIPO DE EVENTO</b></label>
+                                <select name="" id="farmaco_tpevento" class="form-select">
+                                    <option value="">SELECCIONE</option>
+                                    <option value="EVITABLE">EVITABLE</option>
+                                    <option value="NO EVITABLE">NO EVITABLE</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-d-12">
+                                <h3 class="text-black">
+                                    <b>REALIZAR ANALISIS</b>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>EVALUACIÓN HECHOS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_hechos" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>BARRERAS DE SEGURIDAD</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_barreras" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>ACCIONES INSEGURAS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_inseguras" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>FACTORES INHERENTES AL PACIENTE:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_inherentes" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>FACTORES CONTRIBUTIVOS:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_contributivos" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <label for=""><b>OPORTUNIDADES DE MEJORA:</b></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="" id="farmaco_mejora" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>CLASIFICACIÓN FINAL:</b></label>
+                                <select name="" id="farmaco_clasificacion" class="form-select">
+                                    <option value="ACCIÓN INSEGURA">ACCIÓN INSEGURA</option>
+                                    <option value="COMPLICACIÓN">COMPLICACIÓN</option>
+                                    <option value="EVENTO ADVERSO">EVENTO ADVERSO</option>
+                                    <option value="EVENTO CENTINELA">EVENTO CENTINELA</option>
+                                    <option value="INCIDENTE">INCIDENTE</option>
+                                    <option value="FALLA LATENTE">FALLA LATENTE</option>
+                                    <option value="FALLA DE ATENCIÓN EN LA SALUD">FALLA DE ATENCIÓN EN LA SALUD</option>
+                                    <option value="DESCARTAR CASO">DESCARTAR CASO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2" id='tipofarmacoEven'>
+                            <div class="col-md-12">
+                                <label for=""><b>TIPO EVENTO</b></label>
+                                <select name="" id="farmacoEvento" class="form-select"></select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <label for=""><b>ASEGURADOR</b></label>
+                                <select class="form-control" name="asegurador" id="asegurador">
+                                    <option value="NO SE TIENE INFORMACIÓN"></option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer" style="background-color: #233A5F">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>

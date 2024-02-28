@@ -20,3 +20,9 @@ def viewHome(app,session,redirect,url_for,render_template):
         if "username" in session:
             return render_template("home/misCasos.html")
         return redirect(url_for("login"))
+    
+    @app.route('/gestionpass/home/crearCaso', methods=["GET"])
+    def crearCaso():
+        if "username" in session:
+            return render_template("home/crearCaso.html")
+        return redirect(url_for("login"))

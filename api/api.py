@@ -15,7 +15,7 @@ from api.farmacoanalisis.getFarmacoAnalisis import httpGetFarmacoAnalisis
 from api.typeEvents.getEvents import httpGetEvents
 from api.typeEvents.postTypeEvents import httpPostTypeEvents
 
-def RestFullApi(app, db, jsonify,request):
+def RestFullApi(app, db, jsonify,request,session):
     
     httpGetCasos(app,jsonify,db)
     httpPutCases(app,jsonify,db,request)

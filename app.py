@@ -25,7 +25,7 @@ app.secret_key = clave_secreta
 db = connectdb(app)
 
 #init rastfull api
-RestFullApi(app, db, jsonify,request)
+RestFullApi(app, db, jsonify,request,session)
 
 #import the routes of project
 routes(app, render_template, db,pd,send_file, request,jsonify,redirect,url_for,session)

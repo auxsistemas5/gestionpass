@@ -87,10 +87,36 @@ $(document).ready(function () {
         });
         
     });
+    fetch("http://10.0.255.243:8002/api/v1/gestionpass/getAllTypeEventsFormat")
+    .then(response => response.json())
+    .then(data => {
+        // Iterar sobre las opciones y agregarlas al select
+        data.forEach(opcion => {
+            var option = document.createElement("option");
+            option.value = opcion[0];
+            option.text = opcion[1];
+            
+            $("#tipoEventoCaso").append(option);
+        });
+        
+    });
+    fetch("http://10.0.255.243:8002/api/v1/gestionpass/analisis/getAseguradoras")
+    .then(response => response.json())
+    .then(data => {
+        // Iterar sobre las opciones y agregarlas al select
+        data.forEach(opcion => {
+            var option = document.createElement("option");
+            option.value = opcion[0];
+            option.text = opcion[0];
+            
+            $("#aseguradoras").append(option);
+        });
+    });
     $('#casos_area').on('click','#miCasoRol', function(){
         var id = $(this).data('id');
         $('#modalAnalisisCaso').modal('show')
         $('.analisisCaso').hide();
+        $('.farmacoAnalisis').hide();
         var area = $('#clasificacionArea').val();
         if (area === "SEGURIDAD DEL PACIENTE"){
 
@@ -104,7 +130,7 @@ $(document).ready(function () {
                        $('.analisisCaso').hide();
                     }
                     if(response.estado === "con analisis"){
-                        
+                        $('.farmacoAnalisis').hide();
                         $('.analisisCaso').show();
                         $('#mensajeRespuesta').hide();
                         $('#crearNuevoAnalisis').hide();
@@ -121,32 +147,10 @@ $(document).ready(function () {
                         $('#severidad').val(response.analisis[8]);
                         
                         $('#aseguradoras').val(response.analisis[11]);
-                        fetch("http://10.0.255.243:8002/api/v1/gestionpass/analisis/getAseguradoras")
-                        .then(response => response.json())
-                        .then(data => {
-                            // Iterar sobre las opciones y agregarlas al select
-                            data.forEach(opcion => {
-                                var option = document.createElement("option");
-                                option.value = opcion[0];
-                                option.text = opcion[0];
-                                
-                                $("#aseguradoras").append(option);
-                            });
-                        });
+                        
                         $('#crearNuevoAnalisis').hide();
-                        fetch("http://10.0.255.243:8002/api/v1/gestionpass/getAllTypeEventsFormat")
-                        .then(response => response.json())
-                        .then(data => {
-                            // Iterar sobre las opciones y agregarlas al select
-                            data.forEach(opcion => {
-                                var option = document.createElement("option");
-                                option.value = opcion[0];
-                                option.text = opcion[1];
-                                
-                                $("#tipoEventoCaso").append(option);
-                            });
-                            $("#tipoEventoCaso").val(response[10]);
-                        });
+                        $("#tipoEventoCaso").val(response.analisis-[10]);
+                        
                         
                         if($('#clasificacion').val() == "EVENTO ADVERSO"){
                             $("#eventoTipo").show();
@@ -168,7 +172,9 @@ $(document).ready(function () {
                         
                     }
                     if(response.estado === "sin analisis"){
+                        
                         $('.analisisCaso').show();
+                        $('.farmacoAnalisis').hide();
                         $('#mensajeRespuesta').html('<p>CASO SIN ANALISIS DE SEGURIDAD DEL PACIENTE</p>');
                         $('#mensajeRespuesta').show();
 
@@ -261,6 +267,19 @@ $(document).ready(function () {
                         });
                         $('.toast').toast('show');
                     });
+                }
+            });
+        }else if(area === "FARMACOVIGILANCIA" || area === "FARMACOVIGILANCIA NIQUIA"){
+            $('.farmacoAnalisis').hide();
+            $.ajax({
+                type: "GET",
+                url: "http://10.0.255.243:8002/api/v1/gestionpass/farmacoanalisis/getFarmacoAnalisisById/"+id,
+                success: function (response) {
+                    if(response.message === "success"){
+                        $('.farmacoAnalisis').show();
+                    }else{
+                        $('.farmacoAnalisis').hide();
+                    }
                 }
             });
         }
